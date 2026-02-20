@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://d2yw8sm5adlol"]
+
+[ext_resource type="Script" uid="uid://cpwgpn34p5el7" path="res://scripts/pause_menu.gd" id="1_0lmf7"]
+[ext_resource type="PackedScene" uid="uid://c0sr2id614bti" path="res://scenes/ui/sound_button.tscn" id="3_0bnpd"]
+
+[sub_resource type="Animation" id="Animation_bd1lb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eg2gl"]
+resource_name = "in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xpnye"]
+resource_name = "out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xpnye"]
+_data = {
+&"RESET": SubResource("Animation_bd1lb"),
+&"in": SubResource("Animation_eg2gl"),
+&"out": SubResource("Animation_xpnye")
+}
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1798787691]
+process_mode = 3
+script = ExtResource("1_0lmf7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=858456792]
+libraries/ = SubResource("AnimationLibrary_xpnye")
+autoplay = &"in"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1249757791]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2928, 0.46752, 0.48, 0.235294)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1030791151]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.7, 1.7)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1600406244]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=2084547696]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=197813205]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1261554474]
+layout_mode = 2
+text = "str_Paused"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2136042936]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ResumeButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=562693024 instance=ExtResource("3_0bnpd")]
+layout_mode = 2
+text = "str_Resume"
+
+[node name="OptionsButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1718587981 instance=ExtResource("3_0bnpd")]
+layout_mode = 2
+text = "str_Options"
+
+[node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1336069695 instance=ExtResource("3_0bnpd")]
+layout_mode = 2
+text = "str_Quit_to_Menu"
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

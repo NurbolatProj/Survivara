@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwpek5aj0uc0e"]
+
+[ext_resource type="Script" uid="uid://cklmvwwqjdybg" path="res://scripts/enemy_spawner.gd" id="1_kmhts"]
+[ext_resource type="PackedScene" uid="uid://csax10v8dcpsl" path="res://scenes/game_objects/mushroom/mushroom.tscn" id="2_0sk7s"]
+[ext_resource type="PackedScene" uid="uid://b8oauxt3kres" path="res://scenes/goblin/goblin.tscn" id="3_gum4e"]
+[ext_resource type="PackedScene" uid="uid://b4epb780ngv85" path="res://scenes/game_objects/wolf/wolf.tscn" id="4_qoeql"]
+[ext_resource type="PackedScene" uid="uid://b2gugcvbvg4xe" path="res://scenes/game_objects/mini_boss/mini_boss.tscn" id="5_7f8am"]
+
+[node name="EnemySpawner" type="Node"]
+script = ExtResource("1_kmhts")
+mushroom_scene = ExtResource("2_0sk7s")
+goblin_scene = ExtResource("3_gum4e")
+wolf_scene = ExtResource("4_qoeql")
+mini_boss_scene = ExtResource("5_7f8am")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

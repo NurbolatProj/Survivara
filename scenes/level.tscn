@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://df7r0xwrsak1w"]
+
+[ext_resource type="Script" uid="uid://4i2iml3v8rpb" path="res://scripts/level.gd" id="1_dqqpm"]
+[ext_resource type="PackedScene" uid="uid://dwpek5aj0uc0e" path="res://scenes/manager/spawner/enemy_spawner.tscn" id="1_w3e8e"]
+[ext_resource type="PackedScene" uid="uid://c5tv2ak8jta62" path="res://scenes/game_objects/player/Player.tscn" id="2_14633"]
+[ext_resource type="PackedScene" uid="uid://5sxyduei4frd" path="res://scenes/ui/experience_bar.tscn" id="2_s2xl4"]
+[ext_resource type="PackedScene" uid="uid://xxdqnrpukvgi" path="res://scenes/ui/end_screen.tscn" id="2_tfiji"]
+[ext_resource type="PackedScene" uid="uid://6jtd1q7t473n" path="res://scenes/manager/experience_manager.tscn" id="3_1r7xh"]
+[ext_resource type="PackedScene" uid="uid://dy54y4olabsgp" path="res://scenes/ui/arena_time_ui.tscn" id="4_66ojs"]
+[ext_resource type="PackedScene" uid="uid://dajsnvpudwgic" path="res://scenes/manager/arena_time_manager.tscn" id="5_cpiex"]
+[ext_resource type="PackedScene" uid="uid://nnqbni31lylb" path="res://scenes/manager/upgrade_manager.tscn" id="6_05vhw"]
+[ext_resource type="PackedScene" uid="uid://dpiody5r888t0" path="res://scenes/maps/butterfly_map.tscn" id="10_8iemx"]
+[ext_resource type="Script" uid="uid://cwyrps2tuvc8p" path="res://scripts/camera_player.gd" id="11_wsblp"]
+[ext_resource type="PackedScene" uid="uid://bmluvyrmbvwrw" path="res://scenes/ui/vignette.tscn" id="12_8iemx"]
+
+[node name="Level" type="Node" unique_id=1168583585]
+script = ExtResource("1_dqqpm")
+end_screen_scene = ExtResource("2_tfiji")
+
+[node name="Vignette" parent="." unique_id=198338139 instance=ExtResource("12_8iemx")]
+
+[node name="ArenaTimeUI" parent="." unique_id=113270245 node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("4_66ojs")]
+arena_time_manager = NodePath("../ArenaTimeManager")
+
+[node name="ExperienceBar" parent="." unique_id=773694222 node_paths=PackedStringArray("experience_manager") instance=ExtResource("2_s2xl4")]
+experience_manager = NodePath("../ExperienceManager")
+
+[node name="ArenaTimeManager" parent="." unique_id=1965544611 instance=ExtResource("5_cpiex")]
+
+[node name="ExperienceManager" parent="." unique_id=1686110721 instance=ExtResource("3_1r7xh")]
+
+[node name="EnemySpawner" parent="." unique_id=1803777884 node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("1_w3e8e")]
+arena_time_manager = NodePath("../ArenaTimeManager")
+
+[node name="UpgradeManager" parent="." unique_id=2047636841 node_paths=PackedStringArray("experience_manager") instance=ExtResource("6_05vhw")]
+experience_manager = NodePath("../ExperienceManager")
+
+[node name="ButterflyMap" parent="." unique_id=421448813 instance=ExtResource("10_8iemx")]
+
+[node name="BackLayer" type="Node2D" parent="." unique_id=2075157389 groups=["back_layer"]]
+y_sort_enabled = true
+
+[node name="Player" parent="BackLayer" unique_id=384979701 instance=ExtResource("2_14633")]
+unique_name_in_owner = true
+position = Vector2(2, 0)
+
+[node name="FrontLayer" type="Node2D" parent="." unique_id=1572660629 groups=["front_layer"]]
+
+[node name="CameraPlayer" type="Camera2D" parent="." unique_id=1388723439]
+position = Vector2(0, -5)
+zoom = Vector2(2.885, 2.885)
+position_smoothing_enabled = true
+script = ExtResource("11_wsblp")

@@ -1,0 +1,263 @@
+[gd_scene format=3 uid="uid://dadp5uiyhdw0n"]
+
+[ext_resource type="Script" uid="uid://bfacajpuqc6as" path="res://scripts/map_card.gd" id="1_upws3"]
+[ext_resource type="Texture2D" uid="uid://bikl8y13wpy4p" path="res://assets/backgrounds/Снимок экрана 2026-02-17 023834.png" id="2_uexmw"]
+[ext_resource type="PackedScene" uid="uid://c0sr2id614bti" path="res://scenes/ui/sound_button.tscn" id="5_iepqk"]
+
+[sub_resource type="Animation" id="Animation_m44y0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uhqci"]
+resource_name = "discard"
+length = 0.1
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ur3e"]
+resource_name = "in"
+length = 0.4
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c4j7u"]
+resource_name = "selected"
+length = 0.4
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.4),
+"transitions": PackedFloat32Array(1.07177, 1.62451, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.175, 0.305, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0349066, 0.0349066, -0.0349066, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c4j7u"]
+_data = {
+&"RESET": SubResource("Animation_m44y0"),
+&"discard": SubResource("Animation_uhqci"),
+&"in": SubResource("Animation_8ur3e"),
+&"selected": SubResource("Animation_c4j7u")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp4sw"]
+bg_color = Color(0.98, 0, 0.016333085, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi74m"]
+bg_color = Color(0.7529412, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5h1jk"]
+bg_color = Color(0.7529412, 1, 0, 1)
+
+[node name="MapCard" type="Control" unique_id=1222724396]
+custom_minimum_size = Vector2(317, 483)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 423.0
+script = ExtResource("1_upws3")
+
+[node name="ChooseCard" type="PanelContainer" parent="." unique_id=1455258932 groups=["meta_upgrade_card"]]
+custom_minimum_size = Vector2(300, 360)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 414.0
+pivot_offset = Vector2(78, 109)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ChooseCard" unique_id=1032678824]
+libraries/ = SubResource("AnimationLibrary_c4j7u")
+
+[node name="MarginContainer" type="MarginContainer" parent="ChooseCard" unique_id=1042053102]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChooseCard/MarginContainer" unique_id=132886687]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ChooseCard/MarginContainer/VBoxContainer" unique_id=1060881838]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"PanelContainer2"
+
+[node name="NameLabel" type="Label" parent="ChooseCard/MarginContainer/VBoxContainer/PanelContainer" unique_id=552883562]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.129412, 0.129412, 0.129412, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "str_Butterfly"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ChooseCard/MarginContainer/VBoxContainer" unique_id=1149957800]
+layout_mode = 2
+texture = ExtResource("2_uexmw")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="ChooseCard/MarginContainer/VBoxContainer" unique_id=634379090]
+layout_mode = 2
+text = "str_Stay_Alive"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ChooseCard/MarginContainer/VBoxContainer" unique_id=1315320873]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChooseCard/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1401694072]
+layout_mode = 2
+
+[node name="ProgressLabel" type="Label" parent="ChooseCard/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=2107219505]
+layout_mode = 2
+text = "str_Size"
+
+[node name="ProgressBar" type="ProgressBar" parent="ChooseCard/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=987408841]
+unique_name_in_owner = true
+modulate = Color(0.8146189, 0.9249349, 7.70092e-07, 1)
+self_modulate = Color(0.97, 0.9538334, 0, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(170.34, 6.41)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_hp4sw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yi74m")
+max_value = 3.0
+step = 1.0
+value = 3.0
+show_percentage = false
+
+[node name="ProgressLabel2" type="Label" parent="ChooseCard/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=115736832]
+layout_mode = 2
+text = "str_Difficulty"
+
+[node name="ProgressBar2" type="ProgressBar" parent="ChooseCard/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=2052993934]
+unique_name_in_owner = true
+modulate = Color(0.8146189, 0.9249349, 7.70092e-07, 1)
+self_modulate = Color(0.97, 0.9538334, 0, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(170.34, 6.41)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_hp4sw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5h1jk")
+max_value = 5.0
+step = 1.0
+value = 3.0
+show_percentage = false
+
+[node name="ChooseMapButton" parent="ChooseCard/MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1129431510 instance=ExtResource("5_iepqk")]
+layout_mode = 2
+text = "str_Choose"
+
+[connection signal="gui_input" from="ChooseCard" to="ChooseCard" method="_on_gui_input"]
+[connection signal="mouse_entered" from="ChooseCard" to="ChooseCard" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ChooseCard" to="ChooseCard" method="_on_mouse_exited"]
+[connection signal="pressed" from="ChooseCard/MarginContainer/VBoxContainer/VBoxContainer2/ChooseMapButton" to="." method="_on_choose_map_button_pressed"]

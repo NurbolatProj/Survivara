@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" format=3 uid="uid://c88rnbmpaolp0"]
+
+[ext_resource type="Script" uid="uid://d3l2j7ar2otml" path="res://resources/meta_upgrades/meta_upgrades.gd" id="1_1vww1"]
+
+[resource]
+script = ExtResource("1_1vww1")
+id = "experience_drop_chance"
+max_quantity = 3
+name = "str_Increase_Experience"
+description = "str_Increase_Experience_Desc"

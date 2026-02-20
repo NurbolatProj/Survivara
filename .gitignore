@@ -1,0 +1,31 @@
+# =========================
+# Godot 4 specific ignores
+# =========================
+
+.godot/
+.import/
+.export/
+.export.cfg
+export_presets.cfg
+*.tmp
+*.translation
+*.import
+
+# Android build folder (если используешь export)
+android/
+
+# =========================
+# IDE files
+# =========================
+
+.idea/
+.vscode/
+*.code-workspace
+
+# =========================
+# OS files
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini

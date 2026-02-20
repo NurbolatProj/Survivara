@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch6kqwv2gy5qd"]
+
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="1_sgq66"]
+
+[node name="MobileController" type="CanvasLayer"]
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("1_sgq66")]
+process_mode = 3
+modulate = Color(1, 1, 1, 0.5372549)
+offset_left = 13.0
+offset_top = -251.0
+offset_right = 313.0
+offset_bottom = 49.0
+scale = Vector2(0.8, 0.8)
+joystick_mode = 1
+visibility_mode = 2
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"

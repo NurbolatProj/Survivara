@@ -1,0 +1,109 @@
+[gd_scene load_steps=23 format=3 uid="uid://csax10v8dcpsl"]
+
+[ext_resource type="Script" uid="uid://bbeq3blf7qv8d" path="res://scripts/mushroom.gd" id="1_1e67d"]
+[ext_resource type="Texture2D" uid="uid://ddm8wntb33pud" path="res://assets/Mobs/Mushroom/Idle/SmallMushroom_Idle_1.png" id="2_2es5d"]
+[ext_resource type="PackedScene" uid="uid://cqb6auf2eeajq" path="res://scenes/components/death_component.tscn" id="2_6lca2"]
+[ext_resource type="PackedScene" uid="uid://bwi5xfhlmr16a" path="res://scenes/components/exp_bottle_drop_component.tscn" id="3_5o3j2"]
+[ext_resource type="Texture2D" uid="uid://buf6funkfr10a" path="res://assets/Mobs/Mushroom/Idle/SmallMushroom_Idle_2.png" id="3_vm8ek"]
+[ext_resource type="PackedScene" uid="uid://60xgrlkcb3h6" path="res://scenes/components/hurt_box_component.tscn" id="4_j4pw7"]
+[ext_resource type="Texture2D" uid="uid://d0mrmca1uwb6o" path="res://assets/Mobs/Mushroom/Idle/SmallMushroom_Idle_3.png" id="4_wugeq"]
+[ext_resource type="Texture2D" uid="uid://2bjy82mspeq1" path="res://assets/Mobs/Mushroom/Idle/SmallMushroom_Idle_4.png" id="5_pxytu"]
+[ext_resource type="Texture2D" uid="uid://cb7lsio3ko7st" path="res://assets/Mobs/Mushroom/Walk/SmallMushroom_Walk_1.png" id="6_d51g1"]
+[ext_resource type="PackedScene" uid="uid://dsg5t58q5h0fv" path="res://scenes/components/movement_component.tscn" id="6_iwsjg"]
+[ext_resource type="Texture2D" uid="uid://cirqoucqxcuv1" path="res://assets/Mobs/Mushroom/Walk/SmallMushroom_Walk_2.png" id="7_srulm"]
+[ext_resource type="PackedScene" uid="uid://banv6ewcs2bso" path="res://scenes/components/flash_component.tscn" id="7_x46r1"]
+[ext_resource type="Texture2D" uid="uid://cddk1qsitpkso" path="res://assets/Mobs/Mushroom/Walk/SmallMushroom_Walk_3.png" id="8_igmyl"]
+[ext_resource type="Shader" uid="uid://v0rrqx82k85a" path="res://scenes/components/flash_component.gdshader" id="8_tm7df"]
+[ext_resource type="Texture2D" uid="uid://bfhcxbk2qbp3d" path="res://assets/Mobs/Mushroom/Walk/SmallMushroom_Walk_4.png" id="9_gojn2"]
+[ext_resource type="PackedScene" uid="uid://bjqb7b2iiu0rb" path="res://scenes/components/hit_sound_component.tscn" id="9_rawts"]
+[ext_resource type="PackedScene" uid="uid://1g7ael4s3qcu" path="res://scenes/components/health_component.tscn" id="10_esddf"]
+[ext_resource type="PackedScene" uid="uid://xvedxve55aau" path="res://scenes/components/enemy_hit_box_component.tscn" id="18_ss13i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rawts"]
+resource_local_to_scene = true
+shader = ExtResource("8_tm7df")
+shader_parameter/percent = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rwp6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xbbgf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2es5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vm8ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wugeq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pxytu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_d51g1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_srulm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_igmyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gojn2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_51kuu"]
+radius = 4.0
+
+[node name="Mushroom" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_1e67d")
+death_scene = ExtResource("2_6lca2")
+sprite = ExtResource("2_2es5d")
+
+[node name="HealthComponent" parent="." instance=ExtResource("10_esddf")]
+
+[node name="ExpBottleDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_5o3j2")]
+health_component = NodePath("../HealthComponent")
+
+[node name="MovementComponent" parent="." instance=ExtResource("6_iwsjg")]
+
+[node name="FlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_x46r1")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../AnimatedSprite2D")
+flash_material = SubResource("ShaderMaterial_rawts")
+
+[node name="HitSoundComponent" parent="." instance=ExtResource("9_rawts")]
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component", "hit_sound_component") instance=ExtResource("4_j4pw7")]
+health_component = NodePath("../HealthComponent")
+hit_sound_component = NodePath("../HitSoundComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_0rwp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xbbgf")
+animation = &"run"
+autoplay = "idle"
+offset = Vector2(0, -16)
+
+[node name="CollisionMushroom" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_51kuu")
+
+[node name="EnemyHitBox" parent="." instance=ExtResource("18_ss13i")]
+damage = 2

@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://b8xe0hotqi7yg"]
+
+[ext_resource type="Script" uid="uid://cl4ealcn76kq4" path="res://scripts/options_menu.gd" id="1_wj2x4"]
+[ext_resource type="PackedScene" uid="uid://c0sr2id614bti" path="res://scenes/ui/sound_button.tscn" id="3_0ejsc"]
+[ext_resource type="Script" uid="uid://cmqi4oguig445" path="res://scripts/language_selector.gd" id="3_imaij"]
+
+[node name="OptionsMenu" type="CanvasLayer" unique_id=1476109374]
+layer = 2
+script = ExtResource("1_wj2x4")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1652044586]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.7, 1.7)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1640016613]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=1377855346]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=971361480]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1523162134]
+layout_mode = 2
+text = "str_Options Menu"
+horizontal_alignment = 1
+
+[node name="SFXContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=336590579]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXContainer" unique_id=1866247082]
+layout_mode = 2
+text = "str_SFX Volume"
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXContainer" unique_id=489630089]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="MusicContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1645954993]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicContainer" unique_id=2026189796]
+layout_mode = 2
+text = "str_Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicContainer" unique_id=294693850]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="WindowModeContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1362016519]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/WindowModeContainer" unique_id=590728789]
+layout_mode = 2
+text = "str_Window Mode"
+
+[node name="WindowModeButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/WindowModeContainer" unique_id=1063340696 instance=ExtResource("3_0ejsc")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="BackButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=293514719 instance=ExtResource("3_0ejsc")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "str_Back"
+
+[node name="LanguageSelector" type="OptionButton" parent="." unique_id=1050533064]
+unique_name_in_owner = true
+offset_left = 1087.0
+offset_top = 21.0
+offset_right = 1117.0
+offset_bottom = 47.0
+script = ExtResource("3_imaij")
+
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/WindowModeContainer/WindowModeButton" to="." method="_on_window_mode_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

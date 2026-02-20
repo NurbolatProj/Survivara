@@ -1,0 +1,137 @@
+[gd_scene load_steps=25 format=3 uid="uid://b2gugcvbvg4xe"]
+
+[ext_resource type="Script" uid="uid://byh2pxembc7op" path="res://scripts/mini_boss.gd" id="1_bqjas"]
+[ext_resource type="Texture2D" uid="uid://s4d4tn6qvsiu" path="res://scenes/game_objects/mini_boss/big_demon_idle_anim_f0.png" id="2_afni2"]
+[ext_resource type="PackedScene" uid="uid://1g7ael4s3qcu" path="res://scenes/components/health_component.tscn" id="2_aydyr"]
+[ext_resource type="PackedScene" uid="uid://cqb6auf2eeajq" path="res://scenes/components/death_component.tscn" id="2_osvxj"]
+[ext_resource type="PackedScene" uid="uid://bwi5xfhlmr16a" path="res://scenes/components/exp_bottle_drop_component.tscn" id="3_afni2"]
+[ext_resource type="PackedScene" uid="uid://cv68vyjkientn" path="res://scenes/game_objects/mini_boss/fire_ball.tscn" id="3_osvxj"]
+[ext_resource type="PackedScene" uid="uid://dsg5t58q5h0fv" path="res://scenes/components/movement_component.tscn" id="4_osvxj"]
+[ext_resource type="PackedScene" uid="uid://banv6ewcs2bso" path="res://scenes/components/flash_component.tscn" id="5_ecd0c"]
+[ext_resource type="Shader" uid="uid://v0rrqx82k85a" path="res://scenes/components/flash_component.gdshader" id="6_0jfk8"]
+[ext_resource type="PackedScene" uid="uid://bjqb7b2iiu0rb" path="res://scenes/components/hit_sound_component.tscn" id="7_ue4c1"]
+[ext_resource type="PackedScene" uid="uid://60xgrlkcb3h6" path="res://scenes/components/hurt_box_component.tscn" id="8_bywsk"]
+[ext_resource type="Texture2D" uid="uid://duu3porjmio3g" path="res://scenes/game_objects/mini_boss/big_demon_idle_anim_f1.png" id="11_aydyr"]
+[ext_resource type="Texture2D" uid="uid://blmqhg3i1glfs" path="res://scenes/game_objects/mini_boss/big_demon_idle_anim_f2.png" id="12_afni2"]
+[ext_resource type="Texture2D" uid="uid://v3cn6mb6su6i" path="res://scenes/game_objects/mini_boss/big_demon_idle_anim_f3.png" id="13_osvxj"]
+[ext_resource type="Texture2D" uid="uid://c4jqj8eyv2dob" path="res://scenes/game_objects/mini_boss/big_demon_run_anim_f0.png" id="15_afni2"]
+[ext_resource type="Texture2D" uid="uid://bh0468h75s7pl" path="res://scenes/game_objects/mini_boss/big_demon_run_anim_f1.png" id="16_osvxj"]
+[ext_resource type="Texture2D" uid="uid://dkb7w6pk6cukv" path="res://scenes/game_objects/mini_boss/big_demon_run_anim_f2.png" id="17_ecd0c"]
+[ext_resource type="PackedScene" uid="uid://xvedxve55aau" path="res://scenes/components/enemy_hit_box_component.tscn" id="17_hshto"]
+[ext_resource type="Texture2D" uid="uid://c1vs7vak6my7b" path="res://scenes/game_objects/mini_boss/big_demon_run_anim_f3.png" id="18_0jfk8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rawts"]
+resource_local_to_scene = true
+shader = ExtResource("6_0jfk8")
+shader_parameter/percent = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rwp6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xbbgf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_afni2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_aydyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_afni2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_osvxj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_afni2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_osvxj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ecd0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_0jfk8")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_51kuu"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecd0c"]
+radius = 104.0
+
+[node name="MiniBoss" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_bqjas")
+death_scene = ExtResource("2_osvxj")
+fireball_scene = ExtResource("3_osvxj")
+sprite = ExtResource("2_afni2")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_aydyr")]
+max_health = 30.0
+
+[node name="ExpBottleDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_afni2")]
+health_component = NodePath("../HealthComponent")
+
+[node name="MovementComponent" parent="." instance=ExtResource("4_osvxj")]
+max_speed = 100
+
+[node name="FlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_ecd0c")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../AnimatedSprite2D")
+flash_material = SubResource("ShaderMaterial_rawts")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="FireBallSpawner" type="Node2D" parent="."]
+position = Vector2(0, -9)
+
+[node name="HitSoundComponent" parent="." instance=ExtResource("7_ue4c1")]
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component", "hit_sound_component") instance=ExtResource("8_bywsk")]
+health_component = NodePath("../HealthComponent")
+hit_sound_component = NodePath("../HitSoundComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_0rwp6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xbbgf")
+animation = &"idle"
+autoplay = "idle"
+frame = 3
+frame_progress = 0.09118731
+offset = Vector2(0, -16)
+
+[node name="CollisionMushroom" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_51kuu")
+
+[node name="EnemyHitBox" parent="." instance=ExtResource("17_hshto")]
+damage = 2
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_ecd0c")
+
+[connection signal="health_decreased" from="HealthComponent" to="." method="_on_health_component_health_decreased"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

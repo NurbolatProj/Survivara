@@ -1,0 +1,45 @@
+key,en,ru,kk
+str_play,Play,Играть,Ойнау
+str_Upgrades,Upgrades,Улучшение,Жаңартулар
+str_Options,Options,Настройки,Параметрлер
+str_Quit,Quit,Выход,Шығу
+str_Options Menu,Options Menu,Параметрлер Мәзірі,Меню Настроек
+str_SFX Volume,SFX Volume,Громкость эффектов,Эффект дыбысы
+str_Music Volume,Music Volume,Громкость музыки,Музыка деңгейі
+str_Window Mode,Window Mode,Оконный режим,Терезе режимі
+str_Fullscreen,Fullscreen,Полный экран,Толық экран
+str_Windowed,Windowed,Оконный,Терезелі
+
+str_Back,Back,Назад,Артқа
+str_Pause,Pause,Пауза,Пауза
+
+str_Increase_Experience,Increase Experience,Увеличение опыта,Тәжірибені арттыру
+str_Increase_Experience_Desc,Increases experience bottle drop chance by 10%,Увеличивает шанс выпадения бутылки опыта на 10%,Тәжірибе бөтелкесінің түсу мүмкіндігін 10%-ға арттырады
+
+str_Health_Regen,Health Regen,Регенерация здоровья,Денсаулықты қалпына келтіру
+str_Health_Regen_Desc,Increases health regeneration by 1 point per level,Увеличивает восстановление здоровья на 1 единицу за уровень,Әр деңгей сайын денсаулықтың қалпына келуін 1-ге арттырады
+
+str_Max,Max,Максимум,Макс
+
+str_Butterfly,Butterfly,Бабочка,Көбелек
+str_Stay_Alive,You need to stay alive for 3min,Вам нужно выжить 3 минуты,Сіз 3 минут тірі қалуыңыз керек
+str_Size,Size:,Размер:,Өлшемі:
+str_Difficulty,Difficulty:,Сложность:,Қиындығы:
+str_Choose,Choose,Выбрать,Таңдау
+
+str_Game_Over,Game Over,Игра окончена,Ойын аяқталды
+str_Restart,Restart,Перезапуск,Қайта бастау
+str_Quit,Quit,Выход,Шығу
+
+str_Paused,Paused,Пауза,Кідіріс
+str_Resume,Resume,Продолжить,Жалғастыру
+str_Options,Options,Настройки,Параметрлер
+str_Quit_to_Menu,Quit to Menu,Выйти в меню,Мәзірге шығу
+
+str_Axe Damage,Axe Damage,Урон Топора,не знаю
+str_Axe Damage Desc,Increases axe attack Damage by 12%,Повышает урон топора на 12%,не знаю
+
+str_Purchase,Purchase,Купить,Сатып алу
+
+str_Victory,Victory!,Победа!,Жеңіс
+,,,

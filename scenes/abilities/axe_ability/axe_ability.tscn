@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://c25g2nlt13vkx"]
+
+[ext_resource type="Texture2D" uid="uid://cg0o2tx3gs7xb" path="res://scenes/abilities/axe_ability/weapon_throwing_axe.png" id="1_ir2q7"]
+[ext_resource type="Script" uid="uid://0tqcybm1bmh7" path="res://scripts/axe_ability.gd" id="1_l4brr"]
+[ext_resource type="PackedScene" uid="uid://boxa05eew50s3" path="res://scenes/components/hit_box_component.tscn" id="3_40x7p"]
+
+[sub_resource type="Animation" id="Animation_0wjgm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6n1qu"]
+resource_name = "ratation"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tgnje"]
+_data = {
+&"RESET": SubResource("Animation_0wjgm"),
+&"ratation": SubResource("Animation_6n1qu")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eooi7"]
+
+[node name="AxeAbility" type="Node2D"]
+script = ExtResource("1_l4brr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tgnje")
+}
+autoplay = "ratation"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.53, -0.225)
+scale = Vector2(1.12, 1.12)
+texture = ExtResource("1_ir2q7")
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_40x7p")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_eooi7")

@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://c5tv2ak8jta62"]
+
+[ext_resource type="Script" uid="uid://j6tony2iv224" path="res://scripts/player.gd" id="1_f21wy"]
+[ext_resource type="Texture2D" uid="uid://ba1qo3eql646s" path="res://Player/Animations/Hit/knight_f_hit_anim_f0.png" id="1_w4xmo"]
+[ext_resource type="PackedScene" uid="uid://ck5u4urtxtk50" path="res://scenes/abilities/attack_ability/attack_controller.tscn" id="2_h5ri7"]
+[ext_resource type="PackedScene" uid="uid://1g7ael4s3qcu" path="res://scenes/components/health_component.tscn" id="3_b0drk"]
+[ext_resource type="PackedScene" uid="uid://dsg5t58q5h0fv" path="res://scenes/components/movement_component.tscn" id="4_1gvc4"]
+[ext_resource type="PackedScene" uid="uid://banv6ewcs2bso" path="res://scenes/components/flash_component.tscn" id="4_7o7ct"]
+[ext_resource type="Texture2D" uid="uid://bfb51kypd5w3c" path="res://Player/Animations/Idle/IdlePlayer.png" id="5_1gvc4"]
+[ext_resource type="Shader" uid="uid://v0rrqx82k85a" path="res://scenes/components/flash_component.gdshader" id="5_4d5y7"]
+[ext_resource type="Texture2D" uid="uid://c7lcqggo85pkw" path="res://Player/Animations/Run/RunPlayer.png" id="6_iighp"]
+[ext_resource type="AudioStream" uid="uid://c8j40lnsokd83" path="res://assets/audio/hit/damage1.ogg" id="10_qs5uh"]
+[ext_resource type="AudioStream" uid="uid://dm7a1eqf743qp" path="res://assets/audio/hit/damage2.ogg" id="11_tdkgq"]
+[ext_resource type="AudioStream" uid="uid://dtmxmqraeirj5" path="res://assets/audio/hit/damage3.ogg" id="12_4ltw5"]
+[ext_resource type="AudioStream" uid="uid://bvfygwmqejytb" path="res://assets/audio/hit/damage4.ogg" id="13_1tcmu"]
+[ext_resource type="AudioStream" uid="uid://11lifg6o5ata" path="res://assets/audio/hit/damage5.ogg" id="14_tehk4"]
+[ext_resource type="PackedScene" uid="uid://ch6kqwv2gy5qd" path="res://scenes/ui/mobile_controller.tscn" id="15_tdkgq"]
+[ext_resource type="PackedScene" uid="uid://c0sr2id614bti" path="res://scenes/ui/sound_button.tscn" id="16_4ltw5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ltw5"]
+resource_local_to_scene = true
+shader = ExtResource("5_4d5y7")
+shader_parameter/percent = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54ywa"]
+bg_color = Color(0.862745, 0.290196, 0.482353, 1)
+border_color = Color(0.133333, 0.133333, 0.133333, 1)
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 1
+anti_aliasing_size = 0.925
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_80fay"]
+radius = 48.0416
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d5y7"]
+atlas = ExtResource("5_1gvc4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgyhs"]
+atlas = ExtResource("5_1gvc4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxu4f"]
+atlas = ExtResource("5_1gvc4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bajuk"]
+atlas = ExtResource("5_1gvc4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfsts"]
+atlas = ExtResource("6_iighp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o7ct"]
+atlas = ExtResource("6_iighp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gvc4"]
+atlas = ExtResource("6_iighp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs5uh"]
+atlas = ExtResource("6_iighp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3sms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w4xmo")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d5y7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgyhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxu4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bajuk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfsts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o7ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gvc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs5uh")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_loq2h"]
+radius = 5.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxr7u"]
+radius = 5.0
+height = 16.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l623o"]
+streams_count = 5
+stream_0/stream = ExtResource("10_qs5uh")
+stream_1/stream = ExtResource("11_tdkgq")
+stream_2/stream = ExtResource("12_4ltw5")
+stream_3/stream = ExtResource("13_1tcmu")
+stream_4/stream = ExtResource("14_tehk4")
+
+[node name="Player" type="CharacterBody2D" unique_id=1852201777 groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_f21wy")
+
+[node name="MobileController" parent="." unique_id=828638299 instance=ExtResource("15_tdkgq")]
+layer = 0
+
+[node name="AbilityManager" type="Node" parent="." unique_id=2118528665]
+
+[node name="AttackController" parent="AbilityManager" unique_id=1938787583 instance=ExtResource("2_h5ri7")]
+
+[node name="HealthComponent" parent="." unique_id=1978335764 instance=ExtResource("3_b0drk")]
+
+[node name="MovementComponent" parent="." unique_id=551977974 instance=ExtResource("4_1gvc4")]
+max_speed = 90
+acceleration = 25.0
+
+[node name="FlashComponent" parent="." unique_id=4739981 node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_7o7ct")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../AnimatedSpritePlayer")
+flash_material = SubResource("ShaderMaterial_4ltw5")
+
+[node name="GracePeriod" type="Timer" parent="." unique_id=1725262125]
+wait_time = 0.2
+one_shot = true
+
+[node name="HealthRegenTimer" type="Timer" parent="." unique_id=986646696]
+wait_time = 3.0
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=651462060]
+offset_left = -7.0
+offset_top = 2.0
+offset_right = 7.0
+offset_bottom = 4.2
+pivot_offset = Vector2(7, 1.1)
+theme_override_styles/fill = SubResource("StyleBoxFlat_54ywa")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="PickUpArea" type="Area2D" parent="." unique_id=44914499]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea" unique_id=134505380]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_80fay")
+
+[node name="AnimatedSpritePlayer" type="AnimatedSprite2D" parent="." unique_id=1438342826]
+position = Vector2(0, -12)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_m3sms")
+animation = &"hit"
+autoplay = "idle"
+frame_progress = 1.0
+
+[node name="CollisionPlayer" type="CollisionShape2D" parent="." unique_id=37660775]
+visible = false
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_loq2h")
+
+[node name="PlayerHurtBox" type="Area2D" parent="." unique_id=1984157104]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox" unique_id=540601511]
+visible = false
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_sxr7u")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=91757018]
+stream = SubResource("AudioStreamRandomizer_l623o")
+pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1287109892]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=105060844]
+offset_right = 96.0
+offset_bottom = 48.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="PauseButton" parent="CanvasLayer/MarginContainer" unique_id=1987216406 instance=ExtResource("16_4ltw5")]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "str_Pause"
+
+[connection signal="timeout" from="GracePeriod" to="." method="_on_grace_period_timeout"]
+[connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
+[connection signal="area_entered" from="PlayerHurtBox" to="." method="_on_player_hurt_box_area_entered"]
+[connection signal="area_exited" from="PlayerHurtBox" to="." method="_on_player_hurt_box_area_exited"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/PauseButton" to="." method="_on_pause_button_pressed"]

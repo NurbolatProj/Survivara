@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://xxdqnrpukvgi"]
+
+[ext_resource type="Script" uid="uid://bugkjt5wce4b5" path="res://scripts/end_screen.gd" id="1_1oyeq"]
+[ext_resource type="PackedScene" uid="uid://c0sr2id614bti" path="res://scenes/ui/sound_button.tscn" id="2_n8r4t"]
+[ext_resource type="AudioStream" uid="uid://bgxfx67vd7akv" path="res://assets/audio/jingles/victory2.ogg" id="3_53v5j"]
+[ext_resource type="AudioStream" uid="uid://bejd1nricvyfs" path="res://assets/audio/jingles/game_over3.ogg" id="4_e4cmn"]
+
+[sub_resource type="Animation" id="Animation_bd1lb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eg2gl"]
+resource_name = "in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xpnye"]
+resource_name = "out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xpnye"]
+_data = {
+&"RESET": SubResource("Animation_bd1lb"),
+&"in": SubResource("Animation_eg2gl"),
+&"out": SubResource("Animation_xpnye")
+}
+
+[node name="EndScreen" type="CanvasLayer" unique_id=1238467659]
+process_mode = 3
+script = ExtResource("1_1oyeq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=553482315]
+libraries/ = SubResource("AnimationLibrary_xpnye")
+autoplay = &"in"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1239413243]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2928, 0.46752, 0.48, 0.235294)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=428808244]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1415601158]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=914559309]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=328822564]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="NameLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=77314928]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "str_Game_Over"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=112331146]
+layout_mode = 2
+
+[node name="RestartButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1557018832 instance=ExtResource("2_n8r4t")]
+layout_mode = 2
+text = "str_Restart"
+
+[node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1994451051 instance=ExtResource("2_n8r4t")]
+layout_mode = 2
+text = "str_Quit"
+
+[node name="VictorySound" type="AudioStreamPlayer" parent="." unique_id=1840263482]
+stream = ExtResource("3_53v5j")
+volume_db = -6.333
+bus = &"SFX"
+
+[node name="DefeatSound" type="AudioStreamPlayer" parent="." unique_id=1023724479]
+stream = ExtResource("4_e4cmn")
+volume_db = -5.845
+bus = &"SFX"
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
