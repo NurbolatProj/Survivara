@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://drqjn3piv5ghy"]
+[gd_scene format=3 uid="uid://drqjn3piv5ghy"]
 
 [ext_resource type="Script" uid="uid://b1w4644p3qmvy" path="res://scripts/upgrade_screen.gd" id="1_vhd8w"]
 [ext_resource type="PackedScene" uid="uid://nl4yjxgoorcl" path="res://scenes/ui/ability_upgrade_card.tscn" id="1_vpglj"]
@@ -57,18 +57,16 @@ _data = {
 &"out": SubResource("Animation_xpnye")
 }
 
-[node name="UpgradeScreen" type="CanvasLayer"]
+[node name="UpgradeScreen" type="CanvasLayer" unique_id=791888010]
 process_mode = 3
 script = ExtResource("1_vhd8w")
 upgrade_card_scene = ExtResource("1_vpglj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_xpnye")
-}
-autoplay = "in"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1700031483]
+libraries/ = SubResource("AnimationLibrary_xpnye")
+autoplay = &"in"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=57898046]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2928, 0.46752, 0.48, 0.235294)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=671212838]
 auto_translate_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,7 +82,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CardContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="CardContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1986715272]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

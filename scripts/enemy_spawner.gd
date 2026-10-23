@@ -53,7 +53,7 @@ func on_difficulty_increased(difficulty_level: int):
 	var new_spawn_time = max(min_spawn_time, (base_spawn_time - (difficulty_level * difficulty_multiplier)))
 	timer.wait_time = new_spawn_time
 	
-	if difficulty_level == 2:
+	if difficulty_level == 2:	
 		enemy_pool.add_mob(goblin_scene, 70)
 	elif difficulty_level == 4:
 		enemy_pool.add_mob(wolf_scene, 20)

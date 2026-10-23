@@ -33,6 +33,20 @@ func _on_gui_input(event):
 				card.animation_player.play("discard")
 		animation_player.play("selected")
 		await animation_player.animation_finished
+
+		# 🔥 СЮДА ВСТАВЛЯЕМ
+		get_tree().paused = true
+
+		var countdown = preload("res://scenes/ui/countdown_ui.tscn").instantiate()
+		get_tree().current_scene.add_child(countdown)
+
+		countdown.start_countdown()
+		await countdown.finished
+
+		countdown.queue_free()
+
+		get_tree().paused = false
+
 		card_selected.emit()
 
 

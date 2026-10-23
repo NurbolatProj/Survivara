@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dpiody5r888t0" path="res://scenes/maps/butterfly_map.tscn" id="10_8iemx"]
 [ext_resource type="Script" uid="uid://cwyrps2tuvc8p" path="res://scripts/camera_player.gd" id="11_wsblp"]
 [ext_resource type="PackedScene" uid="uid://bmluvyrmbvwrw" path="res://scenes/ui/vignette.tscn" id="12_8iemx"]
+[ext_resource type="PackedScene" uid="uid://c526dxfb1kou8" path="res://scenes/ui/phantom_joystick.tscn" id="13_64w2a"]
 
 [node name="Level" type="Node" unique_id=1168583585]
 script = ExtResource("1_dqqpm")
@@ -51,3 +52,5 @@ position = Vector2(0, -5)
 zoom = Vector2(2.885, 2.885)
 position_smoothing_enabled = true
 script = ExtResource("11_wsblp")
+
+[node name="PhantomJoystick" parent="." unique_id=520002430 instance=ExtResource("13_64w2a")]

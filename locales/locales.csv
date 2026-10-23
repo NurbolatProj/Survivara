@@ -3,7 +3,7 @@ str_play,Play,Играть,Ойнау
 str_Upgrades,Upgrades,Улучшение,Жаңартулар
 str_Options,Options,Настройки,Параметрлер
 str_Quit,Quit,Выход,Шығу
-str_Options Menu,Options Menu,Параметрлер Мәзірі,Меню Настроек
+str_Options Menu,Options Menu,Меню Настроек,Параметрлер Мәзірі
 str_SFX Volume,SFX Volume,Громкость эффектов,Эффект дыбысы
 str_Music Volume,Music Volume,Громкость музыки,Музыка деңгейі
 str_Window Mode,Window Mode,Оконный режим,Терезе режимі
@@ -36,10 +36,27 @@ str_Resume,Resume,Продолжить,Жалғастыру
 str_Options,Options,Настройки,Параметрлер
 str_Quit_to_Menu,Quit to Menu,Выйти в меню,Мәзірге шығу
 
-str_Axe Damage,Axe Damage,Урон Топора,не знаю
-str_Axe Damage Desc,Increases axe attack Damage by 12%,Повышает урон топора на 12%,не знаю
+str_Axe Damage,Axe Damage,Урон Топора,Балта зақымы
+str_Axe Damage Desc,Increases axe attack Damage by 12%,Повышает урон топора на 12%,Балта зақымын 12%-ға арттырады
+str_Anvil,Anvil,Наковальня,Төс
+str_Anvil_Desc,Drops anvils on enemies,Сбрасывает наковальни на врагов,Жауларға төстерді түсіреді
+str_Move Speed,Move Speed,Скорость передвижения,Қозғалу жылдамдығы
+str_Move_Speed_Desc,Increases player movement speed by 10%,Увеличивает скорость передвижения игрока на 10%,Ойыншының қозғалу жылдамдығын 10%-ға арттырады
+str_Sword Damage,Sword Damage,Урон меча,Қылыш зақымы
+str_Sword_Damage_Desc,Increases sword attack damage by 15%,Увеличивает урон меча на 15%,Қылыштың шабуыл зақымын 15%-ға арттырады
+str_Sword Speed,Sword Speed,Скорость атаки меча,Қылыш шабуыл жылдамдығы
+str_Sword_Speed_Desc,Increases sword attack speed by 10%,Увеличивает скорость атаки меча на 10%,Қылыштың шабуыл жылдамдығын 10%-ға арттырады
+str_Throw Axe,Throw Axe,Метание топора,Балта лақтыру
+str_Throw_Axe_Desc,Spawns a spinning axe,Создаёт вращающийся топор,Айналатын балтаны шығарады
+
+str_Window_Mode,Window Mode,Режим окна,Терезе режимі
+str_Hand_Mode,Control Mode,Режим управления,Басқару режимі
+str_Left_Hand,Left Hand,Левша,Солақай
+str_Right_Hand,Right Hand,Правша,Оңқай
+str_Fullscreen,Fullscreen,Полный экран,Толық экран
+str_Windowed,Windowed,Оконный режим,Терезе режимі
 
 str_Purchase,Purchase,Купить,Сатып алу
 
-str_Victory,Victory!,Победа!,Жеңіс
+str_Victory,Victory!,Победа!,Жеңіс!
 ,,,

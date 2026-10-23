@@ -91,9 +91,9 @@ text = "str_Back"
 
 [node name="LanguageSelector" type="OptionButton" parent="." unique_id=1050533064]
 unique_name_in_owner = true
-offset_left = 1087.0
+offset_left = 1039.0
 offset_top = 21.0
-offset_right = 1117.0
+offset_right = 1069.0
 offset_bottom = 47.0
 script = ExtResource("3_imaij")
 

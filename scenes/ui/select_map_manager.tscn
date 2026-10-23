@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b41wj0l0jutxy"]
+
+[ext_resource type="Script" uid="uid://bpn2hls77qsan" path="res://scripts/select_map_manager.gd" id="1_lkw5o"]
+
+[node name="Select_Map_Manager" type="Node" unique_id=1024117335]
+script = ExtResource("1_lkw5o")

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c526dxfb1kou8"]
+
+[ext_resource type="Script" uid="uid://b454lwldvc54d" path="res://scripts/phantom_joystick.gd" id="1_yj12t"]
+[ext_resource type="Texture2D" uid="uid://dt13r06u87fib" path="res://addons/virtual_joystick/textures/joystick_tip_arrows.png" id="2_kmbd6"]
+[ext_resource type="Texture2D" uid="uid://bm30au8mjfc2f" path="res://addons/virtual_joystick/textures/joystick_base_outline.png" id="3_bs3nm"]
+
+[node name="PhantomJoystick" type="CanvasLayer" unique_id=520002430]
+script = ExtResource("1_yj12t")
+
+[node name="Base" type="TextureRect" parent="." unique_id=553868937]
+modulate = Color(1, 1, 1, 0.54901963)
+custom_minimum_size = Vector2(150, 150)
+offset_left = 65.0
+offset_top = 440.0
+offset_right = 215.0
+offset_bottom = 590.0
+texture = ExtResource("2_kmbd6")
+
+[node name="Stick" type="Sprite2D" parent="Base" unique_id=339612084]
+modulate = Color(1, 1, 1, 0.54901963)
+position = Vector2(74, 75)
+texture = ExtResource("3_bs3nm")
